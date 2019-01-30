@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="trace" monitorInterval="30">
+	
+	<Properties>
+        <Property name="DETAIL_LOG_NAME">muyin</Property>
+        <Property name="ERROR_LOG_NAME">muyin-error</Property>
+        <Property name="LOG_HOME">E:\\log</Property>
+        <Property name="DETAIL_LOG_COUNT">200</Property>
+        <Property name="ERROR_LOG_COUNT">50</Property>
+        
+        <Property name="SUTIL_INFO_NAME">sUtil</Property>      
+    </Properties>
+      
+	<Appenders>
+		<!-- <Console name="console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %class{36}#%M [line:%L] - %msg%xEx%n" />
+		</Console> -->
+
+		<RollingFile name="detailLog" fileName="E:\\log/${DETAIL_LOG_NAME}.log" filePattern="E:\\log/${DETAIL_LOG_NAME}-%d{yyyy-MM-dd}.%i.log" append="true">
+			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %class{36}#%M [line:%L] - %msg%xEx%n" />
+			<Policies>
+				<SizeBasedTriggeringPolicy size="100 MB" />
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+			</Policies>
+			<DefaultRolloverStrategy max="200" />
+		</RollingFile>
+		
+		
+		<RollingFile name="errorLog" fileName="E:\\log/${ERROR_LOG_NAME}.log" filePattern="E:\\log/${ERROR_LOG_NAME}-%d{yyyy-MM-dd}.%i.log" append="true">
+			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %class{36}#%M [line:%L] - %msg%xEx%n" />
+			<Policies>
+				<SizeBasedTriggeringPolicy size="50 MB" />
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+			</Policies>
+			<DefaultRolloverStrategy max="50" />
+		</RollingFile>
+
+		<RollingFile name="warnLog" fileName="E:\\log/warnLog.log" filePattern="E:\\log/warnLog-%d{yyyy-MM-dd}.%i.log" append="true">
+			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %class{36}#%M [line:%L] - %msg%xEx%n" />
+			<Policies>
+				<SizeBasedTriggeringPolicy size="50 MB" />
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+			</Policies>
+			<DefaultRolloverStrategy max="50" />
+		</RollingFile>
+		
+		<!-- <RollingFile name="statisticFile" fileName="E:\\log/statistics.log" filePattern="E:\\log/statistics.%d{yyyy-MM-dd}.%i.log">
+			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %class{36}#%M [line:%L] - %msg%xEx%n" />
+			<Policies>
+				<SizeBasedTriggeringPolicy size="10 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="50" />
+		</RollingFile> -->
+		<RollingFile name="sutilInfoLog"
+			fileName="E:\\log/${SUTIL_INFO_NAME}.log"
+			filePattern="E:\\log/${SUTIL_INFO_NAME}_%d{yyyy-MM-dd}.%i.log"
+			append="true">
+			<PatternLayout charset="UTF-8" pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{36} #[line:%L] - %msg%xEx%n" />
+			<Policies>
+				<SizeBasedTriggeringPolicy size="50 MB" />
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+			</Policies>
+			<DefaultRolloverStrategy max="50" />
+		</RollingFile>
+
+	</Appenders>
+	
+	<Loggers>
+		
+	    <!-- <logger name="log4jdbc.log4j2" level="info" additivity="false">
+		    <MarkerFilter marker="LOG4JDBC_NON_STATEMENT" onMatch="DENY" onMismatch="NEUTRAL" />
+			<appender-ref ref="console" />
+		</logger> -->
+
+		<!-- <logger name="com.autoyol.interceptor" level="info" additivity="false">
+			<appender-ref ref="statisticFile"/>
+		</logger> -->
+		
+		<logger name="logger.sutilLog" level="info">
+			<appender-ref ref="sutilInfoLog" />
+		</logger>
+		
+		<Root level="trace">
+			<AppenderRef ref="warnLog" level="warn"/>
+			<AppenderRef ref="detailLog" level="info"/>
+			<AppenderRef ref="errorLog" level="error"/>
+		</Root>
+		
+	</Loggers>
+</Configuration>

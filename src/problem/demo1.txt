@@ -1,0 +1,67 @@
+ 异常:java.lang.ClassNotFoundException: org.springframework.web.context.ContextLoaderListener
+ ---->原因：修改web->3.0时出错
+ ----> 更改之后，需要remove项目重新 发布
+ 
+ 异常:springmvc环境部署报错： NoClassDefFoundError: org/springframework/web/cors/CorsProcessor
+ ----> 版本号不一致
+ 
+异常:使用spring mvc 4.2.x.jar ClassNotFoundException:org.springframework.web.cors.CorsConfigurationSource
+----> 错误的使用,原因是4.2版本后，spring支持跨域共享，具体的使用方法参考文档
+
+
+
+问题：SpringMVC @ResponseBody 415
+---->解决：springMVC缺少配置,pom缺少依赖jar包。                                                                   解决链接:https://blog.csdn.net/yixiaoping/article/details/45281721
+     拓展：自定义一个消息转换器                                                                                                         解决链接:https://www.cnblogs.com/fingerboy/p/7753577.html
+---->jackson还有很多丰富的用法
+       -->
+
+
+
+异常： HV000030: No validator could be found for type: java.lang.Integer
+----->@size不支持 int类型
+
+问题：@ResponseBody返回String 中文乱码
+----->解决:此方法添加 produces="text/html;charset=UTF-8"
+
+异常：Could not open ServletContext resource [/valited/CustomValidationMessage.properties]
+----->添加classpath
+
+问题：ReloadableResourceBundleMessageSource下的properties文件访问不到
+----->TODO
+
+异常：单元测试->java.lang.NoClassDefFoundError: javax/servlet/SessionCookieConfig
+----->缺少依赖包
+<dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>javax.servlet-api</artifactId>
+    <version>3.0.1</version>
+    <scope>test</scope>
+</dependency>
+
+问题：spring junit 读取不到web-info下面的applicationContext
+----->修改为"file:src/main/webapp/WEB-INF/applicationContext.xml"
+
+
+异常：Unable to invoke factory method in class org.apache.logging.log4j.core.appender.RollingFileAppender
+----->未读取到pom中的配置
+添加日志文件入配置
+<resources><!-- 要替换的目标路径和文件 -->
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>server.properties</include>
+					<include>dataSource.properties</include>
+					<include>log4j2.xml</include>
+				</includes>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		
+问题：配置404页面跳转不到
+----->解决： 修改配置路径
+    <error-page>
+		<error-code>404</error-code>
+		<location>/WEB-INF/error404.jsp</location>
+	</error-page>
+	

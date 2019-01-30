@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.muyin.springmvc</groupId>
+	<artifactId>muyin</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+
+	<name>muyin</name>
+	<!-- FIXME change it to the project's website -->
+	<url>http://www.example.com</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.target>1.7</maven.compiler.target>
+
+		<spring.version>4.1.4.RELEASE</spring.version>
+
+	</properties>
+
+
+	<dependencies>
+	
+	<!-- ******************************************************单元测试依赖包start -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+		    <groupId>javax.servlet</groupId>
+		    <artifactId>javax.servlet-api</artifactId>
+		    <version>3.0.1</version>
+		    <scope>test</scope>
+		</dependency>
+		
+		<dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
+            <scope>provided</scope>
+		</dependency> 
+
+	<!-- ******************************************************单元测试依赖包end -->
+
+	<!-- ******************************************************单log4j2依赖包start -->
+		<dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.10.0</version>
+        </dependency>
+
+		<dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.10.0</version>
+        </dependency>
+		
+	<!-- ******************************************************单log4j2依赖包end -->
+	
+	<!-- ******************************************************Apache commons-codec包的基本使用  依赖包start -->
+	<!-- https://blog.csdn.net/a59742/article/details/80380459 -->
+	
+		<dependency>
+		    <groupId>commons-codec</groupId>
+		    <artifactId>commons-codec</artifactId>
+		    <version>1.10</version>
+		</dependency>
+	<!-- ******************************************************Apache commons-codec包的基本使用  依赖包end -->
+	
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
+
+
+		<!-- ******************************************************springMvc消息转换 -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.5.2</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.5.2</version>
+		</dependency>
+		
+		<!-- ********************************************************springMvc数据校验 -->
+		<dependency>
+		    <groupId>org.hibernate</groupId>  
+		    <artifactId>hibernate-validator</artifactId>  
+		    <version>5.0.2.Final</version>  
+		</dependency>  
+		
+		<!-- ********************************************************验签解密包(私有包) -->
+<!-- 		<dependency>
+			<groupId>com.bypay</groupId>
+			<artifactId>jnewsdk-mer</artifactId>
+			<version>1.0.0</version>
+		</dependency> -->
+		
+	</dependencies>
+
+	<build>
+		<finalName>muyin</finalName>
+		<!-- <pluginManagement>lock down plugins versions to avoid using Maven 
+			defaults (may be moved to parent pom) <plugins> <plugin> <artifactId>maven-clean-plugin</artifactId> 
+			<version>3.1.0</version> </plugin> see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging 
+			<plugin> <artifactId>maven-resources-plugin</artifactId> <version>3.0.2</version> 
+			</plugin> <plugin> <artifactId>maven-compiler-plugin</artifactId> <version>3.8.0</version> 
+			</plugin> <plugin> <artifactId>maven-surefire-plugin</artifactId> <version>2.22.1</version> 
+			</plugin> <plugin> <artifactId>maven-war-plugin</artifactId> <version>3.2.2</version> 
+			</plugin> <plugin> <artifactId>maven-install-plugin</artifactId> <version>2.5.2</version> 
+			</plugin> <plugin> <artifactId>maven-deploy-plugin</artifactId> <version>2.8.2</version> 
+			</plugin> </plugins> </pluginManagement> -->
+		<pluginManagement>
+			<plugins>
+				<!-- maven构建的项目默认的jdk是1.5, 而工程中用的是1.7 , 所以如果构造web 3.0的工程,就需要指定一个 -->
+				<plugin>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.0</version>
+					<configuration>
+						<source>1.7</source>
+						<target>1.7</target>
+					</configuration>
+				</plugin>
+
+			</plugins>
+		</pluginManagement>
+		
+		
+	<!-- ***********************************************************************************配置区分环境 -->
+	
+		<resources><!-- 要替换的目标路径和文件 -->
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>server.properties</include>
+					<include>dataSource.properties</include>
+					<include>log4j2.xml</include>
+				</includes>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		
+		<filters><!-- 要使用的文件 -->
+			<filter>profiles/${build.profile.id}/server.properties</filter>
+			<filter>profiles/${build.profile.id}/dataSource.properties</filter>
+		</filters>
+		
+	</build>
+	
+	<!-- ***********************************************************************************配置区分环境 -->
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault><!-- 为true时表示不指定其他profile为激活时，此profile激活 -->
+			</activation>
+			<properties>
+					<build.profile.id>dev</build.profile.id>
+					<LOG_HOME>E:\log</LOG_HOME><!-- dev环境日志文件路径 -->
+					<DETAIL_LOG_COUNT>200</DETAIL_LOG_COUNT>
+					<ERROR_LOG_COUNT>50</ERROR_LOG_COUNT>
+					<SAGE_VERSION>1.2.0</SAGE_VERSION>
+			</properties>
+		</profile>
+		<profile><!-- mvn -P test package -->
+			<id>test</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<build.profile.id>test</build.profile.id>
+				<LOG_HOME>../logs</LOG_HOME><!-- test环境日志文件路径 -->
+				<DETAIL_LOG_COUNT>200</DETAIL_LOG_COUNT>
+				<ERROR_LOG_COUNT>50</ERROR_LOG_COUNT>
+				<SAGE_VERSION>1.2.0</SAGE_VERSION>
+			</properties>
+		</profile>
+		<profile><!-- mvn -P pro package -->
+			<id>pro</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<build.profile.id>pro</build.profile.id>
+				<LOG_HOME>../logs</LOG_HOME><!-- test环境日志文件路径 -->
+				<DETAIL_LOG_COUNT>200</DETAIL_LOG_COUNT>
+				<ERROR_LOG_COUNT>50</ERROR_LOG_COUNT>
+				<SAGE_VERSION>1.2.0</SAGE_VERSION>
+			</properties>
+		</profile>
+	</profiles>
+</project>
