@@ -65,3 +65,5 @@
 		<location>/WEB-INF/error404.jsp</location>
 	</error-page>
 	
+异常:配置拦截器-->通配符的匹配很全面, 但无法找到元素 'mvc:interceptor' 的声明
+----->

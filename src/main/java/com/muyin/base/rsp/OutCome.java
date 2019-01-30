@@ -36,5 +36,4 @@ public class OutCome {
 		Date = date;
 	}
 	
-	
 }

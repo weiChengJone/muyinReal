@@ -1,6 +1,7 @@
 package com.muyin.controller;
 
 import java.util.HashMap;
+
 import java.util.List;
 import java.util.Map;
 
@@ -20,6 +21,11 @@ import com.muyin.vo.voucher.VoucherComplexValitedWithGroupVo;
 import com.muyin.vo.voucher.VoucherValidatedVo;
 import com.muyin.vo.voucher.VoucherVo;
 
+/**
+ * 添加登录拦截器 只拦截 this 做测试
+ * @author ywc 
+ * 
+ */
 @Controller
 @RequestMapping("voucher")
 public class VoucherController {
